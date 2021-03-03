@@ -56,13 +56,17 @@ void preenche (int n, Aluno** tab, int i) {
     scanf("%d", &tab[i]->mat);
     scanf("%*c");
     printf("Informe o nome\t\t: " );
-    scanf("%*[^\n]", &tab[i]->nome);
+    scanf("%[^\n]", &tab[i]->nome);
+    scanf("%*[^\n]");
     scanf("%*c");
     printf("Informe o endereco\t: ");
-    scanf("%*[^\n]", &tab[i]->end);
+    scanf("%[^\n]", &tab[i]->end);
+    scanf("%*[^\n]");
     scanf("%*c");
     printf("Informe o telefone\t: ");
-    scanf("%d", &tab[i]->tel);
+    scanf("%[^\n]", &tab[i]->tel);
+    scanf("%*[^\n]");
+    scanf("%*c");
 }
 
 void retira (int n, Aluno** tab, int i){
