@@ -14,9 +14,6 @@ typedef struct cLinkedList {
 
 Node* createNode (int);
 
-
-
-
 CLinkedList* CLcreateEmpty (); //criar uma linked list vazia
 
 void CLaddEnd (CLinkedList*, int val); //adicionar um no node no fim da circular linked list
@@ -51,14 +48,14 @@ void massada(int M, int P, int N){
     	//Basicaente deve programar:
 	//	1 - encontrar o judeu que vai morrer -> posicionar o node
         //	2 - matar o judeu -> libebrar o node
-    }    if (judeus->firstNode->info==P){ // Verifica se Josefo sobreviveu
+    }    
+    if (judeus->firstNode->info==P){ // Verifica se Josefo sobreviveu
         printf("VIVO\n");
     } else {
         printf("MORTO %d\n", judeus->firstNode->info);
     }
 
 }
-
 
 Node* delNode(CLinkedList* cl, Node* curr, Node* prev) {
     if (curr==cl->firstNode){
@@ -119,6 +116,4 @@ void CLaddEnd (CLinkedList* ll, int val) {
     ll->listSize++;
     pointLastToFirst(ll);
 }
-
-
 
