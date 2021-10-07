@@ -48,6 +48,7 @@ void massada(int M, int P, int N){
     	//Basicaente deve programar:
 	//	1 - encontrar o judeu que vai morrer -> posicionar o node
         //	2 - matar o judeu -> libebrar o node
+	//      OBS : seria interessante usar a função delNode
     }    
     if (judeus->firstNode->info==P){ // Verifica se Josefo sobreviveu
         printf("VIVO\n");
@@ -56,7 +57,14 @@ void massada(int M, int P, int N){
     }
 
 }
-
+/*
+ * Esta função delNode recebe como argumentos:
+ *     1 - CLinkedList* cl -> A lista de judeus
+ *     2 - Node* curr -> o nó corrente (aquele que deve ser morto/excluido)
+ *     3 - Node* prev -> o nó anterior ao corrente (pois é preciso após excluir o curr e apontar o prev->next para o node seguinte ao cur
+ * E retorna Node*:
+ *     1 - retorna o nó seguinte ao que foi excluido
+ */
 Node* delNode(CLinkedList* cl, Node* curr, Node* prev) {
     if (curr==cl->firstNode){
         cl->lastNode->next=curr->next;
