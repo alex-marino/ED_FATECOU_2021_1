@@ -10,33 +10,38 @@ typedef struct cLinkedList {
     Node* firstNode;
     Node* lastNode;
     int listSize;
-    int isEmpty;
 } CLinkedList;
 
 Node* createNode (int);
 
-void dropNode(Node*);
+
 
 
 CLinkedList* CLcreateEmpty (); //criar uma linked list vazia
 
 void CLaddEnd (CLinkedList*, int val); //adicionar um no node no fim da circular linked list
 
-void CLdeleteByIdx (CLinkedList*, int idx); //deletar um node dada sua posiçao
-
 CLinkedList* chargeList(int M); //monta a lista circular com M judeus
 
-Node* delNode(CLinkedList*, Node*, Node*); //mata o judeu e entrega a faca para o próximo
+Node* delNode(CLinkedList*, Node*, Node*);
 
-void pointLastToFirst(CLinkedList* ll); //Atualiza o primeiro e ultimo ponteiro da lista circular
+void pointLastToFirst(CLinkedList* ll);
 
+void massada(int M, int P, int N);
 
 int main() {
-    int i, counter=0, M, P, N;
-    scanf("%d %d %d", &M, &P, &N);
-    CLinkedList* judeus = chargeList(M); //criar a lista circular com M judeus
-    Node* curr = judeus->firstNode; 
-    Node* prev = judeus->lastNode; 
+    int M, P, N;
+    while(scanf("%d %d %d", &M, &P, &N) != EOF){
+        massada(M, P, N);
+    }
+    return 0;
+}
+
+void massada(int M, int P, int N){
+    int i, counter=0;
+    CLinkedList* judeus = chargeList(M);
+    Node* curr = judeus->firstNode; //judeu com a faca - primeiro da lista
+    Node* prev = judeus->lastNode;  //ultimo judeu da lista - anterior ao primeiro
     for (i=0; i<P-1; i++){ //colocar a faca na mao de Josefo
         prev=curr;
         curr=curr=curr->next;
@@ -46,13 +51,12 @@ int main() {
     	//Basicaente deve programar:
 	//	1 - encontrar o judeu que vai morrer -> posicionar o node
         //	2 - matar o judeu -> libebrar o node
-    }
-    if (judeus->firstNode->info==P){
+    }    if (judeus->firstNode->info==P){ // Verifica se Josefo sobreviveu
         printf("VIVO\n");
     } else {
-        printf("Morto %d\n", judeus->firstNode->info);
+        printf("MORTO %d\n", judeus->firstNode->info);
     }
-    return 0;
+
 }
 
 
@@ -65,7 +69,7 @@ Node* delNode(CLinkedList* cl, Node* curr, Node* prev) {
         cl->lastNode=prev;
         prev->next=cl->firstNode;
     }
-    if (curr!=cl->firstNode && curr!=cl->firstNode){
+    if (curr!=cl->lastNode && curr!=cl->firstNode){
         prev->next=curr->next;
     }
     cl->listSize--;
@@ -89,14 +93,10 @@ Node* createNode(int v){
     return newNode;
 }
 
-void dropNode(Node* n){
-    free(n);
-}
 
 CLinkedList* CLcreateEmpty () {
     CLinkedList* ll = (CLinkedList*) malloc(sizeof(CLinkedList));
     ll->firstNode=NULL;
-    ll->isEmpty=1;
     ll->listSize=0;
     ll->lastNode=NULL;
     return ll;
@@ -117,32 +117,6 @@ void CLaddEnd (CLinkedList* ll, int val) {
         ll->lastNode=newNode;
     }
     ll->listSize++;
-    pointLastToFirst(ll);
-}
-
-void CLdeleteByIdx (CLinkedList* ll, int idx){
-    Node* prev = ll->lastNode;
-    Node* curr = ll->firstNode;
-    int i=0;
-    while(curr->next!=ll->firstNode){
-        if (idx==i){
-            prev->next=curr->next;
-            if(idx==0){
-                ll->firstNode=prev->next;
-            }
-            if (idx==ll->listSize){
-                ll->lastNode==prev;
-            }
-            free(curr);
-            ll->listSize--;
-            break;
-        } else {
-            prev=curr;
-            curr=curr->next;
-            i++;
-        }
-
-    }
     pointLastToFirst(ll);
 }
 
