@@ -41,7 +41,7 @@ void massada(int M, int P, int N){
     Node* prev = judeus->lastNode;  //ultimo judeu da lista - anterior ao primeiro
     for (i=0; i<P-1; i++){ //colocar a faca na mao de Josefo
         prev=curr;
-        curr=curr=curr->next;
+        curr=curr->next;
     }
     while (judeus->listSize!=1){
     	//Aqui nesse laço deve ocorrer a mágica :-P
